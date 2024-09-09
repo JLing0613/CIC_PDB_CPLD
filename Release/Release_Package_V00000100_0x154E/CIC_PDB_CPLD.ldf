@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="3.2" title="CIC_PDB_CPLD" device="LCMXO3LF-2100C-5BG256C" default_implementation="impl">
+    <Options/>
+    <Implementation title="impl" dir="impl" description="impl" synthesis="synplify" default_strategy="Strategy1">
+        <Options def_top="State_Logger_8bit" top="TopCICPDB"/>
+        <Source name="Source/TopCICPDB/TopCICPDB.v" type="Verilog" type_short="Verilog" syn_sim="SynOnly">
+            <Options top_module="TopCICPDB"/>
+        </Source>
+        <Source name="Source/OCP3_NIC/OCP3_NIC_Control.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/OCP3_NIC/OCP3_NIC_Sequence.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/SMBusRegister/SMBusControl.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/SMBusRegister/SMBusRegs.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/Blink_Clock.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/Clock_Generator.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/debounce.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/dly_timer.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/Generator_reset.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/GlitchFilter.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/MSTR_SEQ/MSTR_SEQ.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/IP/ExternalPLL/ExtPLL.v" type="Verilog" type_short="Verilog" excluded="TRUE">
+            <Options/>
+        </Source>
+        <Source name="Source/IP/EFB/SMBusFWUpdate.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/IP/InternalPLL/SYS_PLL.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="TestBench/CIC_PDB_CPLD_tf.v" type="Verilog" type_short="Verilog" syn_sim="SimOnly">
+            <Options/>
+        </Source>
+        <Source name="Source/SMBUS_IOEXP/I2C_Control.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/SMBUS_IOEXP/I2C_Slave.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/State_Logger_4bit.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/State_Logger_8bit.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/State_Logger_16bit.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/State_Logger_1bit.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="CIC_PDB_CPLD.lpf" type="Logic Preference" type_short="LPF">
+            <Options/>
+        </Source>
+        <Source name="CIC_PDB_CPLD_SIM/CIC_PDB_CPLD_SIM.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+    </Implementation>
+    <Strategy name="Strategy1" file="CIC_PDB_CPLD1.sty"/>
+</BaliProject>
