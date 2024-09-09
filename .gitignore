@@ -1,3 +1,19 @@
+# Verilog Lattice
+*.ini
+*.recovery
+*.vhd
+*.lst
+*.tfi
+*.ccl
+*.sort
+*.html
+*.tcl
+*.xml
+*.sty
+transcript
+impl/
+*.dir/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

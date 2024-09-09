@@ -1,0 +1,4 @@
+wb_clk_i  i
+i2c1_scl  b
+i2c1_sda  b
+i2c1_irqo  o

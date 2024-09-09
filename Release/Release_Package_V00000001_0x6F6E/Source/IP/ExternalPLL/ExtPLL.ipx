@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DiamondModule name="ExtPLL" module="PLL" VendorName="Lattice Semiconductor Corporation" generator="IPexpress" date="2024 05 24 15:57:17.145" version="5.8" type="Module" synthesis="synplify" source_format="Verilog">
+  <Package>
+		<File name="ExtPLL.lpc" type="lpc" modified="2024 05 24 15:42:35.381"/>
+		<File name="ExtPLL.v" type="top_level_verilog" modified="2024 05 24 15:42:35.804"/>
+		<File name="ExtPLL_tmpl.v" type="template_verilog" modified="2024 05 24 15:42:35.811"/>
+  </Package>
+</DiamondModule>
