@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<BaliProject version="3.2" title="CIC_PDB_CPLD" device="LCMXO3LF-2100C-5BG256C" default_implementation="impl">
+<BaliProject version="3.2" title="CIC_PDB_CPLD" device="LCMXO3LF-4300C-5BG256C" default_implementation="impl">
     <Options/>
     <Implementation title="impl" dir="impl" description="impl" synthesis="synplify" default_strategy="Strategy1">
         <Options def_top="State_Logger_8bit" top="TopCICPDB"/>
