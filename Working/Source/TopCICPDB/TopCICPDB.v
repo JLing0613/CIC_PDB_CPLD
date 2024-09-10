@@ -599,13 +599,15 @@ module TopCICPDB
 
 	Edge_Detector IOEXP0_INT_N_Detect
 	(
-		.iClk				(wOSC),
-		.iRst_n				(wRST_N),
+		.iClk					(wOSC),
+		.iRst_n					(wRST_N),
+		.iClear					(),
 
-		.pos_neg			(1'b1),
-		.input_sig			(IOEXP0_INT_N),
+		.pos_neg				(1'b1),
+		.input_sig				(IOEXP0_INT_N),
 
-		.output_sig			(IOEXP0_INT_N_Edge_Detect)
+		.output_pulse_sig		(IOEXP0_INT_N_Edge_Detect),
+		.output_constant_sig	()
 	);
 
 	wire	[15:0]	IOEXP1_output;
@@ -652,13 +654,15 @@ module TopCICPDB
 
 	Edge_Detector IOEXP1_INT_N_Detect
 	(
-		.iClk				(wOSC),
-		.iRst_n				(wRST_N),
+		.iClk					(wOSC),
+		.iRst_n					(wRST_N),
+		.iClear					(),
 
-		.pos_neg			(1'b1),
-		.input_sig			(IOEXP1_INT_N),
+		.pos_neg				(1'b1),
+		.input_sig				(IOEXP1_INT_N),
 
-		.output_sig			(IOEXP1_INT_N_Edge_Detect)
+		.output_pulse_sig		(IOEXP1_INT_N_Edge_Detect),
+		.output_constant_sig	()
 	);
 
 	wire	[15:0]	IOEXP2_output;
@@ -1071,9 +1075,9 @@ module TopCICPDB
 		wP48V_HS1_FAULT_N_PLD,
 		wP48V_HS2_FAULT_N_PLD,
 		wFM_P3V3_NIC0_FAULT_R_N,
-      wFM_P12V_NIC0_FLTB_R_N,
+		wFM_P12V_NIC0_FLTB_R_N,
 		wFM_P3V3_NIC1_FAULT_R_N,
-      wFM_P12V_NIC1_FLTB_R_N,
+    	wFM_P12V_NIC1_FLTB_R_N,
 		//IOEXPx_INPUT_config[135:128]
 		wP52V_SENSE_ALERT_PLD_N,
 		wP12V_AUX_FAN_ALERT_PLD_N,
