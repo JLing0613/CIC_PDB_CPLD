@@ -1,14 +1,15 @@
 `timescale 1 ns/1 ns
-module I2C_Control#(parameter i2c_slave_addr = 7'h0f)
+module SMBusIOExp_Control#(parameter i2c_slave_addr = 7'h00)
 (
     input  wire  iClk,
     input  wire  iClk_1ms,
     input  wire  iRst_n,
     input  wire  INT_DISABLE_N,
     output wire  INT_N,
-
-    input  wire  SMB_CPLD_LOG_SCL,
-    inout  wire  SMB_CPLD_LOG_SDA,
+	
+	input  wire  scl_in,
+	input  wire  sda_in,
+	output wire  sda_oe,
 
     input  wire  [7:0]  iI0,
     input  wire  [7:0]  iI1,
@@ -59,56 +60,52 @@ localparam	dly_100			    = 16'd2250;		// 1 x 100	    = 100
 
 assign nrst = internal_rst_cnt[7] ;
 //-------------------------------nrst-------------------------------------------
-always @(posedge iClk)
-begin
-if (internal_rst_cnt < 8'hff)
-internal_rst_cnt <= internal_rst_cnt + 1'b1 ;
-else
-internal_rst_cnt <= internal_rst_cnt;
+always @(posedge iClk) begin
+    if (internal_rst_cnt < 8'hff)
+        internal_rst_cnt <= internal_rst_cnt + 1'b1 ;
+    else
+    internal_rst_cnt <= internal_rst_cnt;
 end 
  
-I2C_Slave i2c_slave_SYS
+SMBusIOExp_Slave i2c_slave_SYS
 (
 
-  .CLK_IN               (iClk),
-  .RESET_N              (nrst),
-  .I2C_SLAVE_ADDR       (i2c_slave_addr),
-  .SDA                  (SMB_CPLD_LOG_SDA),
-  .SCL                  (SMB_CPLD_LOG_SCL),
-  .OFFSET               (i2c_offset),
-  .DATA_OUT             (i2c_dat_o),
-  .DATA_IN              (i2c_dat_i),
-  .WRITE_EN             (i2c_wren),
-  .READ_EN              (i2c_rden),
-  .START                (i2c_start),
-  .STOP                 (i2c_stop)
+    .CLK_IN               (iClk),
+    .RESET_N              (nrst),
+    .I2C_SLAVE_ADDR       (i2c_slave_addr),
+    .scl_in               (scl_in),
+    .sda_in               (sda_in),
+    .sda_oe               (sda_oe),
+    .OFFSET               (i2c_offset),
+    .DATA_OUT             (i2c_dat_o),
+    .DATA_IN              (i2c_dat_i),
+    .WRITE_EN             (i2c_wren),
+    .READ_EN              (i2c_rden),
+    .START                (i2c_start),
+    .STOP                 (i2c_stop)
 );
 
-always @(posedge iClk or negedge nrst)
-    begin
-        if (!nrst)
-            begin
-                reg_Output0 <= 8'hFF ;
-                reg_Output1 <= 8'hFF ;
-                reg_C0 <= 8'hFF ;
-                reg_C1 <= 8'hFF ;
-            end
-        else if (i2c_wren)
-            begin
+always @(posedge iClk or negedge nrst) begin
+        if (!nrst) begin
+            reg_Output0 <= 8'hFF ;
+            reg_Output1 <= 8'hFF ;
+            reg_C0 <= 8'hFF ;
+            reg_C1 <= 8'hFF ;
+        end
+        else if (i2c_wren) begin
             case (i2c_offset)
                 8'h02 : reg_Output0  <= i2c_dat_o;
                 8'h03 : reg_Output1  <= i2c_dat_o;
                 8'h06 : reg_C0  <= i2c_dat_o;
                 8'h07 : reg_C1  <= i2c_dat_o;
-            default :
-                begin		   
+            default : begin		   
                     reg_Output0  <= reg_Output0;
                     reg_Output1  <= reg_Output1;
                     reg_C0    <= reg_C0;
                     reg_C1    <= reg_C1;
                 end
             endcase
-            end
+        end
     end
 
 assign wire_I0 = iI0;
@@ -147,27 +144,42 @@ assign wP0_read     = (!INT_N && i2c_offset == 8'h00) ? 1 : 0;
 assign wP1_read     = (!INT_N && i2c_offset == 8'h01) ? 1 : 0;
 assign wINT_Clear   = (!INT_N && wchange_P0 && wchange_P1) ? 1 : 0;     //Offset check method to clear INT_N
 //assign wINT_Clear   = (!INT_N) ? 1 : 0;   //Delay method to clear INT_N
-assign INT_N        = (INT_DISABLE_N && wchange_INT_N) ? 0 : 1;
-assign lock_wire_I0 = (INT_N) ? wire_I0 : IOEXP_INT_prev[15:8];
-assign lock_wire_I1 = (INT_N) ? wire_I1 : IOEXP_INT_prev[7:0];
+assign INT_N        = (INT_DISABLE_N && rchange) ? 0 : 1;
+assign lock_wire_I0 = (INT_N) ? wire_I0 : rcurrent_state[15:8];
+assign lock_wire_I1 = (INT_N) ? wire_I1 : rcurrent_state[7:0];
 
-//State_Logger_16bit IOEXP_INT_N
-State_Single_Logger#
-(
-	.bits		(16)
-)
-IOEXP_INT_N
-(
-	.iClk			    (iClk),
-	.iRst_n			    (iRst_n),
-    .iClear             (wINT_Clear_Delay),
-	
-    .iDbgSt				({wire_I0,wire_I1}),
+assign IOEXP_debug  = 
+{
+    INT_N,
+    rchange,
+    i2c_wren,
+    i2c_rden
+};
 
-	.prev_state 		(IOEXP_INT_prev),
-	.current_state		(IOEXP_INT_curr),
-    .ochange            (wchange_INT_N)
-);
+wire [15:0] wtarget_signal;
+reg [15:0] rcurrent_state;
+reg [15:0] rprev_state;
+reg rchange;
+
+assign  wtarget_signal  = {wire_I0,wire_I1};
+
+always @(posedge iClk) begin
+    if(!iRst_n || wINT_Clear_Delay) begin
+		rcurrent_state	<= wtarget_signal;
+		rprev_state		<= 16'h0000;
+		rchange			<= 1'b0;
+	end
+	else if(wtarget_signal != rcurrent_state && INT_N) begin
+		rprev_state		<= rcurrent_state;
+		rcurrent_state	<= wtarget_signal;
+		rchange			<= 1'b1;
+	end
+	else begin
+		rprev_state		<= rprev_state;
+		rcurrent_state	<= rcurrent_state;
+		rchange			<= rchange;	
+	end
+end
 
 State_Single_Logger#
 (

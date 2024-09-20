@@ -10,57 +10,50 @@
 // Intel or its authorized distributors.  Please refer to the applicable 
 // agreement for further details.
 
-module GlitchFilter 
-   #(
-	   parameter	NUMBER_OF_SIGNALS	= 1,
-      parameter   RST_VALUE = 0)       //reset value for all filter stages
-   (
-      input                            iClk, //% Clock Input
-      input                            iARst_n,//% Asynchronous Reset Input
-      input                            iSRst_n, //Synchronous Reset Input
-      input                            iEna,  //%enable signal (only executes when this is HIGH)
-      input [NUMBER_OF_SIGNALS-1 : 0]  iSignal,//% Input Signals
-      output [NUMBER_OF_SIGNALS-1 : 0] oFilteredSignals//%Glitchless Signal
-   );
+module GlitchFilter#
+(
+   parameter	NUMBER_OF_SIGNALS	= 1,
+   parameter   RST_VALUE = 0)       //reset value for all filter stages
+(
+   input                            iClk, //% Clock Input
+   input                            iARst_n,//% Asynchronous Reset Input
+   input                            iSRst_n, //Synchronous Reset Input
+   input                            iEna,  //%enable signal (only executes when this is HIGH)
+   input [NUMBER_OF_SIGNALS-1 : 0]  iSignal,//% Input Signals
+   output [NUMBER_OF_SIGNALS-1 : 0] oFilteredSignals//%Glitchless Signal
+);
    
-   //Internal signals
-   reg [NUMBER_OF_SIGNALS-1 : 0]     rFilter;
-   reg [NUMBER_OF_SIGNALS-1 : 0]     rFilteredSignals;
+//Internal signals
+reg [NUMBER_OF_SIGNALS-1 : 0]     rFilter;
+reg [NUMBER_OF_SIGNALS-1 : 0]     rFilteredSignals;
 
-   integer                           i;
+integer  i;
    
-   always @(posedge iClk, negedge iARst_n) begin
-      if (!iARst_n) begin //asynch active-low Reset condition
-         rFilter			<= RST_VALUE;     //{NUMBER_OF_SIGNALS{1'b0}};
-         rFilteredSignals	<= RST_VALUE;     //{NUMBER_OF_SIGNALS{1'b0}};
+always @(posedge iClk, negedge iARst_n) begin
+   if (!iARst_n) begin //asynch active-low Reset condition
+      rFilter			   <= RST_VALUE;     //{NUMBER_OF_SIGNALS{1'b0}};
+      rFilteredSignals	<= RST_VALUE;     //{NUMBER_OF_SIGNALS{1'b0}};
+   end
+   else begin
+      if (!iSRst_n) begin
+         rFilteredSignals <= RST_VALUE;
+         rFilter          <= RST_VALUE;
       end
-      else begin
-           if (!iSRst_n)
-           begin
-              rFilteredSignals <= RST_VALUE;
-              rFilter          <= RST_VALUE;
-           end
-         else if (iEna)          //if this module requires a slower than core clock, we generate a pulse with proper 
-           begin            //frequency and feed to iEna input signal, otherwise it can be HIGH all the time
-	          rFilter <= iSignal; //Input signal flip flop
-
-              for (i=0; i<=NUMBER_OF_SIGNALS-1; i=i+1)
-                begin
-	               if (iSignal[i] == rFilter[i]) //if previous and current signal are the same output is enabled
-                     begin 
-		                rFilteredSignals[i] <= rFilter[i];
-                     end
-	            end
-           end // if (iEna)
-         else
-           begin
-              rFilteredSignals <= rFilteredSignals;
-           end
-         
-      end // else: !if(!iARst_n)
-   end // always @ (posedge iClk, negedge iARst_n)
+      else if (iEna) begin                         //if this module requires a slower than core clock, we generate a pulse with proper, frequency and feed to iEna input signal, otherwise it can be HIGH all the time
+         rFilter <= iSignal;                       //Input signal flip flop
+         for (i=0; i<=NUMBER_OF_SIGNALS-1; i=i+1) begin
+            if (iSignal[i] == rFilter[i]) begin    //if previous and current signal are the same output is enabled
+               rFilteredSignals[i] <= rFilter[i];
+            end
+         end
+      end // if (iEna)
+      else  begin
+         rFilteredSignals <= rFilteredSignals;
+      end
+   end   // else: !if(!iARst_n)
+end      // always @ (posedge iClk, negedge iARst_n)
    
-   //Output assignment
-   assign oFilteredSignals = rFilteredSignals;
+//Output assignment
+assign oFilteredSignals = rFilteredSignals;
    
 endmodule

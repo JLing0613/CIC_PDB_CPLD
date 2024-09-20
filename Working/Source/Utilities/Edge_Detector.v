@@ -1,13 +1,15 @@
 module Edge_Detector
 (
-    input     wire          iClk,
-    input     wire          iRst_n,
+    input   wire        iClk,
+    input   wire        iRst_n,
+    input   wire        iClear,
 
-	input	  wire			pos_neg,		// Positive edge detect or Negative edge detect
-    input     wire		    input_sig,
+	input   wire		pos_neg,		// Positive edge detect or Negative edge detect
+    input   wire		input_sig,
 
-    output    wire		    output_pulse_sig,
-    output    wire		    output_constant_sig
+    output  wire		output_pulse_sig,
+    output  wire		output_constant_sig,
+	output	wire		output_change
 );
 
 reg rchange;
@@ -15,8 +17,9 @@ reg rprev_state;
 reg rcurr_state;
 reg rinput_sig_delay;
 
-assign output_pulse_sig = (pos_neg) ? input_sig & ~rinput_sig_delay : ~input_sig & rinput_sig_delay;
-assign output_constant_sig  = prev_state;
+assign output_pulse_sig 	= (pos_neg) ? input_sig & ~rinput_sig_delay : ~input_sig & rinput_sig_delay;
+assign output_constant_sig  = rprev_state;
+assign output_change		= rchange;
 
 always @ (posedge iClk)
 	begin
