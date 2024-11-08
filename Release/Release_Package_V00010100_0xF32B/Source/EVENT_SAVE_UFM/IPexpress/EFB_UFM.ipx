@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DiamondModule name="EFB_UFM" module="EFB_UFM" VendorName="Lattice Semiconductor Corporation" generator="IPexpress" date="2024 10 14 11:54:12.861" version="1.2" type="Module" synthesis="synplify" source_format="Verilog HDL">
+  <Package>
+		<File name="EFB_UFM.lpc" type="lpc" modified="2024 10 14 11:54:07.318"/>
+		<File name="EFB_UFM.v" type="top_level_verilog" modified="2024 10 14 11:54:07.999"/>
+		<File name="EFB_UFM_tmpl.v" type="template_verilog" modified="2024 10 14 11:54:08.000"/>
+  </Package>
+</DiamondModule>

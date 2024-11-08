@@ -1,0 +1,71 @@
+===================================================================================================
+QUANTA Computer Inc. CPLD RELEASE NOTES for F0N(CI-Catalina)
+===================================================================================================
+Project Name            : F0N
+CPLD Vender             : Lattice
+CPLD Device             : LCMXO3LF-4300C-5BG256C
+HDL FW Version          : 0x00010100
+Build Date              : 2024/11/08
+Checksum                : 0xF32B
+===================================================================================================
+                             IMPORTANT INSTALLATION NOTES
+===================================================================================================
+I. WARNING:
+  1. N/A
+
+II. CPLD FW Upgrade:
+  1. Using Dongle: HW-USBN-2A
+  2. Using oBMC online update: fw-util cpld --update mb_cpld [file]
+===================================================================================================
+                             KNOWN ISSUES/WORKAROUNDS
+===================================================================================================
+0x00000001:
+
+- Initial release for EVT stage.
+
+===================================================================================================
+                             FEATURES ADDED/MODIFY
+===================================================================================================
+0x00010100:
+
+-   Add RMC enable monitor configuration, command as below:
+      i2cset -y -f 14 0x14 0x06 0xfe(Change IO Expander to output port)
+      i2cset -y -f 14 0x14 0x02 0x??(0xff, RMC enable monitor by sequence; 0xfe, sequence not monitoring RMC enable)
+
+0x00010000:
+
+-   5 IO Expander remain, address as 0x10~0x14.
+-  Modify leak event platform configuration mechnism, command as:
+    i2cset -f -y 14 0x14 0x07 0xf0(Change IO Expander to output port)
+    i2cset -f -y 14 0x14 0x03 0xf0(Leading POR)
+    i2cset -f -y 14 0x14 0x03 0xf1(Initial Bring up)
+    i2cset -f -y 14 0x14 0x03 0xf2(Capacity Driven)
+    i2cset -f -y 14 0x14 0x03 0xf3(Safety Driven)
+-  Change REGs module address to 0x1e.
+-  Add UFM module, address as 0x1f, function not ready still in discussion with customer.
+-  Add Error Injection to disable SMBus for 5 seconds, command as: 
+    i2cset -y -f 14 0x14 0x07 0x7f(Change IO Expander to output port)
+    i2cset -y -f 14 0x14 0x03 0x7f(Error Injection)
+-  Add Small/Large Leak event Error Injection, command as:
+    Small Leak:
+    i2cset -y -f 14 0x14 0x07 0xdf(Change IO Expander to output port)
+    i2cset -y -f 14 0x14 0x03 0xdf(Error Injection)
+    Large Leak:
+    i2cset -y -f 14 0x14 0x07 0xbf(Change IO Expander to output port)
+    i2cset -y -f 14 0x14 0x03 0xbf(Error Injection)
+
+0x00000100:
+
+- Add IO Expander interupt mechanism.
+- Add Plaform Config to Master Sequence.
+
+0x00000001:
+
+- Initial release for EVT stage.
+
+===================================================================================================
+                             ISSUES FIXED
+===================================================================================================
+0x00000001:
+
+- Initial release for EVT stage.
