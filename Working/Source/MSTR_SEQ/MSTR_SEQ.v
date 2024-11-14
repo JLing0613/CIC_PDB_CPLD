@@ -191,10 +191,7 @@ always @ (posedge iClk or negedge iRst_n) begin
 					end
 				end
 				else if (!wLargeLeakage_N || !wSmallLeakage_N) begin
-					oP12V_AUX_FAN_EN		<= 	1'b1;
-					oPWR_EN_Devices			<= 	1'b0;
-					oP12V_NODEx_EN			<= 	1'b0;
-					rDBG_MSTR_SEQ_FSM_curr	<= St_6_DC_off;
+					rDBG_MSTR_SEQ_FSM_curr	<= St_e_Leakage;
 				end
 				else begin
 					//if(iPWR_P48V_FAULT && iPWR_FAN_FAULT && oUFM_RUNTIME_FLT) begin
@@ -223,10 +220,7 @@ always @ (posedge iClk or negedge iRst_n) begin
 					end
 				end
 				else if (!wLargeLeakage_N || !wSmallLeakage_N) begin
-					oP12V_AUX_FAN_EN		<= 	1'b1;
-					oPWR_EN_Devices			<= 	1'b0;
-					oP12V_NODEx_EN			<= 	1'b0;
-					rDBG_MSTR_SEQ_FSM_curr	<= St_6_DC_off;
+					rDBG_MSTR_SEQ_FSM_curr	<= St_e_Leakage;
 				end
 				else begin
 					//if(wFault_N && oUFM_RUNTIME_FLT) begin
@@ -255,10 +249,7 @@ always @ (posedge iClk or negedge iRst_n) begin
 					end
 				end
 				else if (!wLargeLeakage_N || !wSmallLeakage_N) begin
-					oP12V_AUX_FAN_EN		<= 	1'b1;
-					oPWR_EN_Devices			<= 	1'b0;
-					oP12V_NODEx_EN			<= 	1'b0;
-					rDBG_MSTR_SEQ_FSM_curr	<= St_6_DC_off;
+					rDBG_MSTR_SEQ_FSM_curr	<= St_e_Leakage;
 				end
 				else begin
 					//if(wFault_N && oUFM_RUNTIME_FLT) begin
@@ -271,7 +262,7 @@ always @ (posedge iClk or negedge iRst_n) begin
 				end
 			end
 			St_5_S0: begin
-				if (iDC_PWR_BTN_ON || !wRMC_Enable || !wLargeLeakage_N || !wSmallLeakage_N) begin
+				if (iDC_PWR_BTN_ON || !wRMC_Enable) begin
 					if (wDLY_TIMEOUT) begin
 						oP12V_AUX_FAN_EN		<= 	1'b1;
 						oPWR_EN_Devices			<= 	1'b0;
@@ -285,6 +276,9 @@ always @ (posedge iClk or negedge iRst_n) begin
 						rDLY_TIME				<=	dly_0ms;
 						rUFM_DLY_TIMER_EN		<=	1'b0;
 					end
+				end
+				else if (!wLargeLeakage_N || !wSmallLeakage_N) begin
+					rDBG_MSTR_SEQ_FSM_curr	<= St_e_Leakage;
 				end
 				else begin
 					//if(wFault_N && oUFM_RUNTIME_FLT) begin
@@ -301,13 +295,16 @@ always @ (posedge iClk or negedge iRst_n) begin
 					rDBG_MSTR_SEQ_FSM_curr	<=	St_e_Leakage;
 				end
 				else if(!iDC_PWR_BTN_ON) begin
-					rDBG_MSTR_SEQ_FSM_curr	<=	St_1_Standby_Ready;
+					rDBG_MSTR_SEQ_FSM_curr	<=	St_2_FAN_on;
 				end
 				else begin
 					rDBG_MSTR_SEQ_FSM_curr	<=	St_6_DC_off;
 				end
 			end
 			St_e_Leakage: begin
+				oP12V_AUX_FAN_EN		<= 	1'b1;
+				oPWR_EN_Devices			<= 	1'b0;
+				oP12V_NODEx_EN			<= 	1'b0;
 				rDBG_MSTR_SEQ_FSM_curr	<=	St_e_Leakage;
 			end
 			St_f_Fault: begin

@@ -9,6 +9,7 @@ module OCP3_NIC_Sequence
 	//	OCP3 NIC card sideband control
 	input	wire	iPRSNT_NIC_N,
 	input	wire	iPG_P3V3_AUX,
+	input	wire	iPG_P12V_AUX,
 	input	wire	iPWRGD_NIC_EDGE,
 	output	reg		oNIC_AUX_PWR_EN,
 	input	wire	iPWRGD_NIC_PWR_GOOD,
@@ -276,7 +277,7 @@ Edge_Detector mufm_AUX_PWRGD_Edge_Detect
 
 	.pos_neg				(1'b0),
 	.both					(1'b0),
-	.input_sig				(iPWRGD_NIC_EDGE),
+	.input_sig				(iPG_P12V_AUX),
 
 	.output_pulse_sig		(),
 	.output_constant_sig	(wUFM_AUX_PWRGD_constant_Edge_Detector)

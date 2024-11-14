@@ -305,7 +305,7 @@ assign	wPWR_NIC1_FAULT 				=	(wFM_P3V3_NIC1_FAULT_R_N && wFM_P12V_NIC1_FLTB_R_N)
 assign	wPWR_VR_Alert 					=	(wNODEA_PSU_SMB_ALERT_R_L && wNODEB_PSU_SMB_ALERT_R_L && wP12V_AUX_FAN_ALERT_PLD_N && wP12V_AUX_PSU_SMB_ALERT_R_L) ? 1 : 0;
 assign	wPWR_Sense_Alert 				=	(wP12V_AUX_NIC0_SENSE_ALERT_R_N && wP12V_AUX_NIC1_SENSE_ALERT_R_N && wP12V_SCM_SENSE_ALERT_R_N && wP52V_SENSE_ALERT_PLD_N) ? 1 : 0;
 
-assign 	PSU_ALERT_N 					=	(wPWR_VR_Alert && wPWR_Sense_Alert) ? 1 : 0;
+assign 	PSU_ALERT_N 					=	(wPWR_VR_Alert && wPWR_Sense_Alert && IOEXP4_output[15]) ? 1 : 0;
 
 assign	wFan_PRSNT_N 					=	(!wFAN_0_PRESENT_N || !wFAN_1_PRESENT_N || !wFAN_2_PRESENT_N || !wFAN_3_PRESENT_N || !wFAN_4_PRESENT_N || !wFAN_5_PRESENT_N || !wFAN_6_PRESENT_N || !wFAN_7_PRESENT_N) ? 0 : 1; 
 assign	RST_OCP_V3_1_R_N 				=	(wNIC0_PERST_N && wOCP_SFF_PERST_FROM_HOST_ISO_PLD_N) ? 1 : 0;
