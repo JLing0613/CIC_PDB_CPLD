@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DiamondModule name="SMBusFWUpdate" module="EFB" VendorName="Lattice Semiconductor Corporation" generator="IPexpress" date="2024 05 24 16:02:05.681" version="1.2" type="Module" synthesis="synplify" source_format="Verilog">
+  <Package>
+		<File name="SMBusFWUpdate.lpc" type="lpc" modified="2024 05 24 15:59:59.396"/>
+		<File name="SMBusFWUpdate.v" type="top_level_verilog" modified="2024 05 24 15:59:59.833"/>
+		<File name="SMBusFWUpdate_tmpl.v" type="template_verilog" modified="2024 05 24 15:59:59.839"/>
+  </Package>
+</DiamondModule>
