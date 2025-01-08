@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="3.2" title="CIC_PDB_CPLD" device="LCMXO3LF-4300C-5BG256C" default_implementation="impl">
+    <Options/>
+    <Implementation title="impl" dir="impl" description="impl" synthesis="synplify" default_strategy="Strategy1">
+        <Options def_top="TimerMang" top="TopCICPDB"/>
+        <Source name="Source/TopCICPDB/TopCICPDB.v" type="Verilog" type_short="Verilog" syn_sim="SynOnly">
+            <Options top_module="TopCICPDB"/>
+        </Source>
+        <Source name="Source/OCP3_NIC/OCP3_NIC_Control.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/OCP3_NIC/OCP3_NIC_Sequence.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/MSTR_SEQ/MSTR_SEQ.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/IP/ExternalPLL/ExtPLL.v" type="Verilog" type_short="Verilog" excluded="TRUE">
+            <Options/>
+        </Source>
+        <Source name="Source/IP/EFB/SMBusFWUpdate.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/IP/InternalPLL/SYS_PLL.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/Utilities/Blink_Clock.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/Utilities/Clock_Generator.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/Utilities/debounce.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/Utilities/dly_timer.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/Utilities/Edge_Detector.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/Utilities/Generator_reset.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/Utilities/GlitchFilter.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/Utilities/State_Multiple_Logger.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/Utilities/State_Single_Logger.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/SMBus_Register/SMBusRegs_Control.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/SMBus_Register/SMBusRegs_Slave.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/SMBus_IOEXP/SMBusIOExp_Control.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/SMBus_IOEXP/SMBusIOExp_Slave.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/EVENT_SAVE_UFM/ufm_rw_top_bb.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/EVENT_SAVE_UFM/TimerMang.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/EVENT_SAVE_UFM/EFB/ufm_wb_top.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="Source/EVENT_SAVE_UFM/IPexpress/EFB_UFM.ipx" type="IPX_Module" type_short="IPX">
+            <Options/>
+        </Source>
+        <Source name="Source/EVENT_SAVE_UFM/IPexpress/USR_MEM.ipx" type="IPX_Module" type_short="IPX">
+            <Options/>
+        </Source>
+        <Source name="Source/EVENT_SAVE_UFM/IPexpress/EFB_UFM.v" type="Verilog" type_short="Verilog" excluded="TRUE">
+            <Options/>
+        </Source>
+        <Source name="CIC_PDB_CPLD.lpf" type="Logic Preference" type_short="LPF">
+            <Options/>
+        </Source>
+        <Source name="CIC_PDB_CPLD_SIM/CIC_PDB_CPLD_SIM.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+    </Implementation>
+    <Strategy name="Strategy1" file="CIC_PDB_CPLD1.sty"/>
+</BaliProject>
