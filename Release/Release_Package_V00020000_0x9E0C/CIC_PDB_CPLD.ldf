@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BaliProject version="3.2" title="CIC_PDB_CPLD" device="LCMXO3LF-4300C-5BG256C" default_implementation="impl">
     <Options/>
-    <Implementation title="impl" dir="impl" description="impl" synthesis="synplify" default_strategy="Strategy1">
+    <Implementation title="impl" dir="impl" description="impl" synthesis="synplify" default_strategy="Area">
         <Options def_top="TimerMang" top="TopCICPDB"/>
         <Source name="Source/TopCICPDB/TopCICPDB.v" type="Verilog" type_short="Verilog" syn_sim="SynOnly">
             <Options top_module="TopCICPDB"/>
@@ -79,6 +79,9 @@
             <Options/>
         </Source>
         <Source name="Source/EVENT_SAVE_UFM/IPexpress/EFB_UFM.v" type="Verilog" type_short="Verilog" excluded="TRUE">
+            <Options/>
+        </Source>
+        <Source name="Source/RMC_enable_control/RMC_enable_control.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
         <Source name="CIC_PDB_CPLD.lpf" type="Logic Preference" type_short="LPF">

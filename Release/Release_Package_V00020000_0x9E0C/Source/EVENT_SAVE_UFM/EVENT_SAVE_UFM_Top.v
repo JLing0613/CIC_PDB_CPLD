@@ -205,6 +205,9 @@ b2v_inst1(
 		//FWUpdate
 		.i2c1_scl                   (SMB_PROG_CPLD_3V3AUX_SCL_R),
 		.i2c1_sda                   (SMB_PROG_CPLD_3V3AUX_SDA_R),
+		// DETECT EFB ID Disable UFM  Trigger
+		.EFB_scl_o                  (EFB_scl                ),
+		.EFB_sda_o                  (EFB_sda                ),			
 		.i2c1_irqo                  (                          ),
 		//.DIP						(DIP					),
 		//.DIP						(1'b0					),

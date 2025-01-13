@@ -286,11 +286,6 @@ assign	wNIC0_PWRBRK_N						=	(wDBG_MSTR_SEQ_FSM_curr == 4'h0) ?  wOCP_SFF_PWRBRK
 assign	wNIC1_PWRBRK_N						=	(wDBG_MSTR_SEQ_FSM_curr == 4'h0) ?  wOCP_V3_2_PWRBRK_FROM_HOST_ISO_PLD_N : 1;
 assign	FM_SYS_THROTTLE_N 					= 	(wNIC0_PWRBRK_N && wNIC1_PWRBRK_N) ? 1 : 0;
 
-//assign	wSmall_Leakage_N 					= 	((!wPRSNT_CHASSIS0_LEAK_CABLE_R_N) ? wCHASSIS0_LEAK_Q_N_PLD & IOEXP4_output[4] : 1) & 
-//												((!wPRSNT_CHASSIS2_LEAK_CABLE_R_N) ? wCHASSIS2_LEAK_Q_N_PLD & IOEXP4_output[4] : 1);
-//assign	wLarge_Leakage_N 					= 	((!wPRSNT_CHASSIS1_LEAK_CABLE_R_N) ? wCHASSIS1_LEAK_Q_N_PLD & IOEXP4_output[5] : 1) & 
-//												((!wPRSNT_CHASSIS3_LEAK_CABLE_R_N) ? wCHASSIS3_LEAK_Q_N_PLD & IOEXP4_output[5] : 1);
-
 assign	RSVD_RMC_GPIO3_R 					= 	(!wPRSNT_RJ45_FIO_N_R) ? (~wLeak_0_status & ~wLeak_2_status) : 1;
 assign 	LEAK_DETECT_RMC_N_R 				= 	(!wPRSNT_RJ45_FIO_N_R) ? (~wLeak_1_status & ~wLeak_3_status) : 1;
 assign 	CPLD_READY_N						= 	(!wPRSNT_RJ45_FIO_N_R && wPWRGD_P3V3_AUX_PLD) ? 0 : 1;

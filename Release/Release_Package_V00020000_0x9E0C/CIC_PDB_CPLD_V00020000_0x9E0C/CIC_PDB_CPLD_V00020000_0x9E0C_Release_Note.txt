@@ -4,9 +4,9 @@ QUANTA Computer Inc. CPLD RELEASE NOTES for F0N(CI-Catalina)
 Project Name            : F0N
 CPLD Vender             : Lattice
 CPLD Device             : LCMXO3LF-4300C-5BG256C
-HDL FW Version          : 0x00010300
-Build Date              : 2025/01/08
-Checksum                : 0x2385
+HDL FW Version          : 0x00020000
+Build Date              : 2025/01/13
+Checksum                : 0x9E0C
 ===================================================================================================
                              IMPORTANT INSTALLATION NOTES
 ===================================================================================================
@@ -26,7 +26,7 @@ II. CPLD FW Upgrade:
 ===================================================================================================
                              FEATURES ADDED/MODIFY
 ===================================================================================================
-0x00010300:
+0x00020000:
 
 -   Modify leakage dc off delay 30mins function
 -   Modify Interupt of IO Expander

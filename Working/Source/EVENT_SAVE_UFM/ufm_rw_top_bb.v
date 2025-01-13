@@ -15,7 +15,8 @@
 // ===========================================================
 // 24/08/2    HP      0.0        building inital code 
 // 24/08/23   HP                 adding  gpi_update
-// 24/11/14   HP                 adding  EFD_ID disable UFM trigger
+// 24/11/14   HP                 adding  EFD_ID disable UFM trigger <= remove 25/1/9
+// 25/1/9     HP                 adding  LSC CMD DETECT disable UFM trigger
 // ===========================================================
 `timescale  1 ns /  100 ps
 module ufm_rw_top
