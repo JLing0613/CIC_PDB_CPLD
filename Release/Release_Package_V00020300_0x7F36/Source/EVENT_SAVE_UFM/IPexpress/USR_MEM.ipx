@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DiamondModule name="USR_MEM" module="RAM_DP_TRUE" VendorName="Lattice Semiconductor Corporation" generator="IPexpress" date="2024 10 14 11:54:33.391" version="7.5" type="Module" synthesis="synplify" source_format="Verilog">
+  <Package>
+		<File name="" type="" modified="2024 10 14 11:54:33.144"/>
+		<File name="USR_MEM.lpc" type="lpc" modified="2024 10 14 11:54:28.230"/>
+		<File name="USR_MEM.v" type="top_level_verilog" modified="2024 10 14 11:54:28.907"/>
+		<File name="USR_MEM_tmpl.v" type="template_verilog" modified="2024 10 14 11:54:28.908"/>
+		<File name="tb_USR_MEM_tmpl.v" type="testbench_verilog" modified="2024 10 14 11:54:29.521"/>
+  </Package>
+</DiamondModule>

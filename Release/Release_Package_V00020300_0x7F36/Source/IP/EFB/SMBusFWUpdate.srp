@@ -1,0 +1,28 @@
+SCUBA, Version Diamond (64-bit) 3.13.0.56.2
+Fri May 24 15:59:59 2024
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2023 Lattice Semiconductor Corporation,  All rights reserved.
+
+    Issued command   : C:\lscc\diamond\3.13\ispfpga\bin\nt64\scuba.exe -w -n SMBusFWUpdate -lang verilog -synth synplify -bus_exp 7 -bb -type efb -arch xo3c00f -freq 50 -i2c1config -i2c1_freq 400 -i2c1_sa 1000001 -i2c1_addr 7 -dev 2100 
+    Circuit name     : SMBusFWUpdate
+    Module type      : efb
+    Module Version   : 1.2
+    Ports            : 
+	Inputs       : wb_clk_i
+	Outputs      : i2c1_irqo
+	Inouts       : i2c1_scl, i2c1_sda
+    I/O buffer       : not inserted
+    EDIF output      : SMBusFWUpdate.edn
+    Verilog output   : SMBusFWUpdate.v
+    Verilog template : SMBusFWUpdate_tmpl.v
+    Verilog purpose  : for synthesis and simulation
+    Bus notation     : big endian
+    Report output    : SMBusFWUpdate.srp
+    Element Usage    :
+             BB : 2
+            EFB : 1
+    Estimated Resource Usage:

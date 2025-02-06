@@ -1,0 +1,57 @@
+[Device]
+Family=machxo3lf
+PartType=LCMXO3LF-4300C
+PartName=LCMXO3LF-4300C-5BG256C
+SpeedGrade=5
+Package=CABGA256
+OperatingCondition=COM
+Status=S
+
+[IP]
+VendorName=Lattice Semiconductor Corporation
+CoreType=LPM
+CoreStatus=Demo
+CoreName=RAM_DP_TRUE
+CoreRevision=7.5
+ModuleName=USR_MEM
+SourceFormat=Verilog HDL
+ParameterFileVersion=1.0
+Date=10/14/2024
+Time=11:54:28
+
+[Parameters]
+Verilog=1
+VHDL=0
+EDIF=1
+Destination=Synplicity
+Expression=BusA(0 to 7)
+Order=Big Endian [MSB:LSB]
+IO=0
+RAddress=32
+RData=8
+WAddress=32
+WData=8
+ROutputEn=0
+RClockEn=0
+WOutputEn=0
+WClockEn=0
+enByte=0
+ByteSize=9
+Optimization=Speed
+Reset=Sync
+Reset1=Sync
+Init=0
+MemFile=
+MemFormat=bin
+EnECC=0
+Pipeline=0
+WriteA=Normal
+WriteB=Normal
+init_data=0
+no_init=0
+
+[FilesGenerated]
+=mem
+
+[Command]
+cmd_line= -w -n USR_MEM -lang verilog -synth synplify -bus_exp 7 -bb -arch xo3c00f -type ramdp -device LCMXO3LF-4300C -aaddr_width 5 -widtha 8 -baddr_width 5 -widthb 8 -anum_words 32 -bnum_words 32 -cascade -1 -mem_init0 -writemodeA NORMAL -writemodeB NORMAL

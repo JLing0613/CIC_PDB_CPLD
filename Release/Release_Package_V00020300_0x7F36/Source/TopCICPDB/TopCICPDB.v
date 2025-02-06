@@ -1,5 +1,5 @@
 //`define SIM
-//`define noUFM
+`define noUFM
 
 module TopCICPDB
 (
