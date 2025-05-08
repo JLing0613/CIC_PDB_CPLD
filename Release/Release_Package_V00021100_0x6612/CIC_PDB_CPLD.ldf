@@ -84,9 +84,6 @@
         <Source name="Source/RMC_enable_control/RMC_enable_control.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
-        <Source name="Source/Utilities/State_Single_Ref_Logger.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
         <Source name="CIC_PDB_CPLD.lpf" type="Logic Preference" type_short="LPF">
             <Options/>
         </Source>

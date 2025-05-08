@@ -1,0 +1,28 @@
+SCUBA, Version Diamond (64-bit) 3.12.1.454
+Thu Feb 17 13:52:34 2022
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2020 Lattice Semiconductor Corporation,  All rights reserved.
+
+    Issued command   : C:\lscc_3_12\diamond\3.12\ispfpga\bin\nt64\scuba.exe -w -n I2C_Update -lang verilog -synth synplify -bus_exp 7 -bb -type efb -arch xo3c00f -freq 50 -i2c1config -i2c1_freq 100 -i2c1_sa 1000001 -i2c1_addr 7 -dev 2100 
+    Circuit name     : I2C_Update
+    Module type      : efb
+    Module Version   : 1.2
+    Ports            : 
+	Inputs       : wb_clk_i
+	Outputs      : i2c1_irqo
+	Inouts       : i2c1_scl, i2c1_sda
+    I/O buffer       : not inserted
+    EDIF output      : I2C_Update.edn
+    Verilog output   : I2C_Update.v
+    Verilog template : I2C_Update_tmpl.v
+    Verilog purpose  : for synthesis and simulation
+    Bus notation     : big endian
+    Report output    : I2C_Update.srp
+    Element Usage    :
+             BB : 2
+            EFB : 1
+    Estimated Resource Usage:

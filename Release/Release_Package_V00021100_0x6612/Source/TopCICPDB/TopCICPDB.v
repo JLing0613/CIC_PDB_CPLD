@@ -971,9 +971,9 @@ mInitial_Leak_detect_timer
 	.clk_in				(wCLK_50ms),
 	.iRst_n				(wRST_N),
 	.iClear				(1'b1),
-	.dly_timer_en		(wPWRGD_P3V3_AUX_PLD),
+	.dly_timer_en		(wLeak_ConfigDone),
 	.dly_timer_start	(1'b1),
-	.dly_time			(16'd12000),
+	.dly_time			(16'd6000),
 	.dly_timeout		(wBMC_ready)
 );
 
